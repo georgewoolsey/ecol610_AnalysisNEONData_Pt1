@@ -43,6 +43,7 @@ First, load in the needed packages. Install the packages if needed.
 library(tidyverse)
 library(lubridate)
 library(viridis)
+library(RColorBrewer)
 library(scales)
 library(latex2exp)
 library(psych)
