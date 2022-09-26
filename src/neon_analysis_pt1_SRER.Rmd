@@ -5,7 +5,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   pdf_document:
     toc: true
-    toc_depth: 2
+    toc_depth: 3
 linkcolor: blue
 header-includes:
   - \usepackage{caption}
@@ -298,6 +298,10 @@ ggplot(., aes(x = date_id)) +
 
 ```
 
+### Evaluation
+
+\textcolor{violet}{There was a wider range of variability in the daily carbon fluxes in 2021 for both CPER and SRER than in 2020. The variability in the carbon flux measurements at these sites in 2021 was largely driven by a sharp decline in NEE (i.e. increased $CO_{2}$ input to the ecosystem) in the summer and autumn relative to preceding levels. It is likely that the increased productivity during this time period was driven by increased water availability at these water-limited monitoring sites. Unfortunately, precipitation and soil water content data is not available for these sites during this same time period (see environmental section below).}
+
 ## Environmental variables
 
 Plots of air temperature, soil temperature, soil moisture and PAR/PPFD over time
@@ -381,11 +385,14 @@ env_vars <- c("swc", "ta", "ts", "ppfd_in", "vpd")
     )
 ```
 
+
+### Evaluation
+
+\textcolor{violet}{There is a strong seasonal trend at both sites in the envirnomental variables for which data is available over the full time-period. Air, soil temperature, Photosynthetic Photon Flux Density (PPFD), and vapor pressure deficit (VPD) all have maximums in the summer (i.e. June-August) and minimums in the winter (i.e. December-March). Unfortunatley, data relating to water-availability in these water-limited ecosystems is not avaialbe over the full time-period. Air temperature and soil temperature exhibit much less within-season variability compared to PPFD and VPD.}
+
 ## Plots of C fluxes vs. Environmental variables
 
 Plots of GPP, Re, NEE vs. Environmental variables and color by ~~day of year~~ **season**
-
-*I personally found the coloring of the points by day of year to be difficult to interpret and instead colored the points by season so that high and low days of the year (i.e. winter) are colored the same.*
 
 ```{r, fig.height = 7, fig.width = 8}
 env_vars <- c("swc", "ta", "ts", "ppfd_in", "vpd")
@@ -491,6 +498,13 @@ for (i in 1:length(sts)) {
 }
 ```
 
+### Evaluation
+
+*\textcolor{violet}{I personally found the coloring of the points by day of year to be difficult to interpret and instead colored the points by season so that high and low days of the year (i.e. winter) are colored the same.}*
+
+\textcolor{violet}{At CPER, the strongest NEE response to variability in the environmental factors considered was with PPFD in the summer season. There was limited correlation between NEE and PPFD in the autumn and winter but in the summer and spring, there was a significant negative relationship between PPFD and NEE. During these warmer seasons, as PPFD increased, NEE decreased due to increasing GPP and relatively flat $R_E$. There was also a strong correlation between NEE and soil temperature at CPER during the spring and summer seasons. During the spring, there was a negative relationship between NEE and soil temperature but during the summer this relationship turned positive. That is, as soil temperature increased during the spring, NEE decreased (i.e. increased $CO_{2}$ input to the ecosystem) but in the summer, increasing soil temperature was associated with increased NEE (a threshold response pattern).}
+
+\textcolor{violet}{At SRER, the strongest NEE response to variability in the environmental factors considered was with soil water content in the summer season. This relationship was positive, meaning that as soil water content increased in the summer, NEE also increased (i.e. decreased $CO_{2}$ input to the ecosystem). This is a non-intuitive result and may be driven by a few outlier points with high soil moisture content readings during the summer season. There were significant negative relationships between NEE and the environmental variables PPFD, air temperature, soil temperature, and VPD in the winter at SRER. Increases in PPFD, air temperature, soil temperature, and VPD during the winter resulted in decreased NEE (i.e. increased $CO_{2}$ input to the ecosystem). In the warmer months of summer and spring, this relationship was either reversed or did not exhibit any pattern. In the summer at SRER, there was high sensitivity of plant productivity (GPP) to increasing temperatures. As temperatures increased at SRER during the summer, plant productivity (GPP) decreased steeply. However, this decreasing production was offset by comparable decreasing respiration ($R_E$) so that the overall impact on NEE was negligible.}
 
 ## Scatter Plot Matrices (SPLOMS)
 
@@ -535,3 +549,4 @@ for (i in 1:length(sts)) {
   my_corr_plot_fn(my_site = sts[i])
 }
 ```
+
