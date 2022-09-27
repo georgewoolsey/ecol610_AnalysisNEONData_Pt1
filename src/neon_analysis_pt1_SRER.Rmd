@@ -394,7 +394,7 @@ env_vars <- c("swc", "ta", "ts", "ppfd_in", "vpd")
 
 Plots of GPP, Re, NEE vs. Environmental variables and color by ~~day of year~~ **season**
 
-```{r, fig.height = 7, fig.width = 8}
+```{r, fig.height = 8, fig.width = 8, results=FALSE}
 env_vars <- c("swc", "ta", "ts", "ppfd_in", "vpd")
 dep_vars <- c("nee", "re", "gpp")
 plt_flx_env <- function(my_site){(
@@ -491,11 +491,9 @@ plt_flx_env <- function(my_site){(
     ) +
     guides(color = guide_legend(override.aes = list(size = 5)))
 )}
-# sites
-sts <- unique(dta_1day$neon_site_name)
-for (i in 1:length(sts)) {
-  print(plt_flx_env(my_site = sts[i]))
-}
+
+unique(dta_1day$neon_site_name) %>% 
+  purrr::map(plt_flx_env) 
 ```
 
 ### Evaluation
@@ -543,10 +541,7 @@ my_corr_plot_fn <- function(my_site) {
   )  
 }
 
-# sites
-sts <- unique(dta_1day$neon_site_name)
-for (i in 1:length(sts)) {
-  my_corr_plot_fn(my_site = sts[i])
-}
+corr_plts <- unique(dta_1day$neon_site_name) %>% 
+  purrr::map(my_corr_plot_fn)
 ```
 
